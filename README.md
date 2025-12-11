@@ -1,6 +1,6 @@
 # HamarTech CTF – kort guide
 
-[# HamarTech Nett Side](hamar-tech.1im.imkatta.no)
+[hamar-tech.1im.imkatta.no](# HamarTech Nett Side)
 
 
 ## Hva er dette?
