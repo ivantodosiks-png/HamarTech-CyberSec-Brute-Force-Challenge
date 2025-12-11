@@ -1,7 +1,6 @@
 # HamarTech CTF – kort guide
 
-[hamar-tech.1im.imkatta.no](# HamarTech Nett Side)
-
+hamar-tech.1im.imkatta.no
 
 ## Hva er dette?
 En liten offline CTF med to flagg og en takkeside. Alt ligger lokalt, ingen server trengs.
