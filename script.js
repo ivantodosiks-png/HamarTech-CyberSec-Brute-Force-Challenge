@@ -38,6 +38,7 @@ const loginForm = document.getElementById('loginForm');
 const adminForm = document.getElementById('adminForm');
 const logoutBtn = document.getElementById('logoutBtn');
 const flag1 = document.getElementById('flag1');
+const loginError = document.getElementById('loginError');
 
 const CONTENT_KEY = 'cr-content';
 const TOKEN_KEY = 'cr-admin-token';
@@ -179,17 +180,42 @@ if (modal) {
 if (loginForm) {
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    if (loginError) loginError.textContent = '';
     const user = loginForm.username.value.trim();
     const pass = loginForm.password.value.trim();
-    if (user === DEMO_USER && pass === DEMO_PASS) {
-      setLoggedIn(true);
-      loginForm.classList.add('hidden');
-      adminForm.classList.remove('hidden');
-      fillForm(contentState);
-      showToast('Logget inn (lokal)');
-    } else {
-      showToast('Feil brukernavn eller passord');
-    }
+    const formData = new URLSearchParams();
+    formData.append('log', user);
+    formData.append('pwd', pass);
+    formData.append('redirect_to', '/admin.html');
+
+    // Simulerer POST-innlogging som kan snappes i en proxy/Intruder.
+    // Ingen rate-limit, tilsiktet for CTF.
+    fetch('/wp-login.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString()
+    }).catch(() => {
+      // Ignorer nettverksfeil i offline-miljø.
+    }).finally(() => {
+      if (user !== DEMO_USER) {
+        if (loginError) loginError.textContent = 'Feil brukernavn.';
+        showToast('Feil brukernavn');
+        return;
+      }
+      if (pass !== DEMO_PASS) {
+        if (loginError) loginError.textContent = 'Feil passord.';
+        showToast('Feil passord');
+        return;
+      }
+      if (user === DEMO_USER && pass === DEMO_PASS) {
+        setLoggedIn(true);
+        loginForm.classList.add('hidden');
+        adminForm.classList.remove('hidden');
+        fillForm(contentState);
+        showToast('Logget inn (lokal)');
+        if (loginError) loginError.textContent = '';
+      }
+    });
   });
 }
 

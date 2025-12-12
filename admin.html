@@ -47,7 +47,7 @@
     <p class="muted">Demo: bruk admin / admin123. Ingen ekstern server, alt lagres i nettleseren.</p>
 
     <div class="panel">
-      <form id="loginForm" class="modal__form">
+      <form id="loginForm" class="modal__form" method="POST" action="/wp-login.php">
         <div class="input">
           <label for="username">Brukernavn</label>
           <input type="text" id="username" name="username" placeholder="admin" required>
@@ -57,6 +57,7 @@
           <input type="password" id="password" name="password" placeholder="admin123" required>
         </div>
         <button type="submit" class="btn primary">Logg inn</button>
+        <div id="loginError" class="muted" style="color:#f87171;margin-top:6px;"></div>
         <p class="muted">Hint: brute force mulig, ingen rate limit.</p>
       </form>
 
