@@ -44,7 +44,16 @@ const CONTENT_KEY = 'cr-content';
 const TOKEN_KEY = 'cr-admin-token';
 const DEMO_USER = 'charlotte';
 const DEMO_PASS = 'admin-hamartech';
-const FLAG_VALUE = 'FLAG{admin_panel_unlocked}';
+function buildAdminFlag() {
+  // Спрятанный флаг #1 (не виден как строка FLAG{...} в исходнике)
+  const codes = [
+    70, 76, 65, 71, 123, 97, 100, 109, 105, 110, 95, 112, 97,
+    110, 101, 108, 95, 117, 110, 108, 111, 99, 107, 101, 100, 125
+  ];
+  return String.fromCharCode(...codes);
+}
+
+const FLAG_VALUE = buildAdminFlag();
 
 const defaultContent = {
   heroTag: 'Fan-portal',
