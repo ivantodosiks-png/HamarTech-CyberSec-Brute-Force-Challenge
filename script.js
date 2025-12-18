@@ -43,7 +43,7 @@ const loginError = document.getElementById('loginError');
 const CONTENT_KEY = 'cr-content';
 const TOKEN_KEY = 'cr-admin-token';
 const DEMO_USER = 'charlotte';
-const DEMO_PASS = 'admin123321';
+const DEMO_PASS = 'admin-hamartech';
 const FLAG_VALUE = 'FLAG{admin_panel_unlocked}';
 
 const defaultContent = {
